@@ -1,4 +1,3 @@
-// src/pages/Collections.jsx
 import React, { useState, useEffect } from 'react';
 import SofaLoader from '../components/SofaLoader';
 
@@ -18,7 +17,7 @@ const Collections = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -28,70 +27,66 @@ const Collections = () => {
       : allCollections.filter(item => item.category === selectedCategory);
 
 
+
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12 font-sans bg-[#fefaf3]">
-      <h2 className="text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 bg-[#fefaf3]">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">
         Discover Our Collections
       </h2>
 
       {/* Filter Bar */}
-      <div className="flex justify-center space-x-5 mb-14">
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-5 mb-12">
         {categories.map(cat => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-6 py-3 rounded-full text-sm font-semibold transition
+            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition
               ${
                 selectedCategory === cat
-                  ? 'bg-amber-600 text-white shadow-lg'
+                  ? 'bg-amber-600 text-white shadow'
                   : 'bg-gray-100 text-gray-700 hover:bg-amber-400 hover:text-white'
               }
             `}
-            aria-pressed={selectedCategory === cat}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Grid Cards */}
-      <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-3">
+      {/* Cards Grid */}
+      <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
         {filteredCollections.map(({ title, description, image }, i) => (
           <div
             key={i}
-            className="group relative rounded-3xl shadow-lg bg-white overflow-hidden cursor-pointer transform transition duration-700 hover:scale-105 hover:shadow-[0_0_15px_5px_rgba(251,191,36,0.4)] hover:drop-shadow-lg"
-            tabIndex={0}
-            role="button"
-            aria-label={`View collection: ${title}`}
+            className="rounded-3xl shadow-lg bg-white overflow-hidden transition duration-300 hover:shadow-xl"
             style={{
               animation: 'fadeUp 0.5s ease forwards',
-              animationDelay: `${i * 150}ms`,
+              animationDelay: `${i * 120}ms`,
               opacity: 0,
               transform: 'translateY(20px)',
             }}
           >
-            <div className="relative h-64 overflow-hidden rounded-t-3xl">
+            <div className="relative h-48 sm:h-52 md:h-64 overflow-hidden rounded-t-3xl">
               <img
                 src={image}
                 alt={title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              {/* subtle gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-30 pointer-events-none rounded-t-3xl" />
-              {/* shiny gloss sweep */}
-              <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 pointer-events-none rounded-t-3xl group-hover:opacity-70 animate-gloss-sweep" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-20 pointer-events-none" />
+              <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-70 animate-gloss-sweep" />
             </div>
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">
+            <div className="p-5 sm:p-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 hover:text-amber-600 transition-colors">
                 {title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">{description}</p>
+              <p className="text-gray-600 text-sm sm:text-base">{description}</p>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Animation styles */}
       <style jsx>{`
         @keyframes fadeUp {
           to {
@@ -108,7 +103,7 @@ const Collections = () => {
           }
         }
         .animate-gloss-sweep {
-          animation: glossSweep 1.2s ease-in-out infinite;
+          animation: glossSweep 1.5s ease-in-out infinite;
         }
       `}</style>
     </section>
