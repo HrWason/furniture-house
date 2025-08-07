@@ -27,7 +27,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center mt-8 text-sm">&copy; {new Date().getFullYear()} FurnitureHouse. All rights reserved.</p>
+      <p className="text-center mt-8 text-sm">&copy; {new Date().getFullYear()} FurnitureHouse. All rights reserved. Designed and Developed by <a href='https://hrwason.com'>HrWason WebSolutions</a></p>
     </footer>
   );
 };
