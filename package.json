@@ -5,10 +5,13 @@
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
+    "lottie-react": "^2.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.7.1",
     "react-scripts": "^5.0.1",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
